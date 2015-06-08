@@ -89,6 +89,11 @@ class Generator(object):
         shutil.copytree(os.path.join(self.ROOT, 'layout', 'media'),
                 os.path.join(self.DEPLOY, 'media'))
 
+        if os.path.exists(os.path.join(self.DEPLOY, 'uploads')):
+            shutil.rmtree(os.path.join(self.DEPLOY, 'uploads'))
+        shutil.copytree(os.path.join(self.ROOT, 'uploads'),
+                os.path.join(self.DEPLOY, 'uploads'))
+
         self.POSTS = os.path.join(self.ROOT, 'posts')
         self.PAGES = os.path.join(self.ROOT, 'pages')
 
