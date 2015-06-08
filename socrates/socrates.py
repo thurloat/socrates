@@ -32,7 +32,7 @@ DEFAULTS = {
     'skip_categories': False,
     'inline_css': False,
     'pygments': {},
-    'sitemap_urls': ['about',],
+    'sitemap_urls': ['about', ],
     'punctuation': False,
     'ligatures': False,
     'deploy_dir': 'deploy'
@@ -210,6 +210,9 @@ class Generator(object):
         """
         Create a file (path) with contents
         """
+        dirname = os.path.dirname(path)
+        if not os.path.exists(dirname):
+            os.makedirs(dirname)
         f = open(path, 'w')
         f.write(contents.encode("utf-8"))
         f.close()
@@ -418,7 +421,7 @@ class Generator(object):
             'posts': posts,
             'now': self._get_atom_date()}))
         self._write_to_file(m, contents)
-        
+
     def make_atom(self):
         """
         Create an atom feed
